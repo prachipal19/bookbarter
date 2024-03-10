@@ -5,6 +5,9 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa'; // Import social icons
 import Layout from '../components/Layout';
+import Link from 'next/link';
+import Image from 'next/image';
+
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -54,7 +57,7 @@ const Login: React.FC = () => {
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: 'linear-gradient(319deg, #bbff99 0%, #ffec99 37%, #ff9999 100%)' }}>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
         <div style={{ margin: '20px', width: '400px', padding: '8px', background: 'white', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-          <img src="/logo.png" alt="Logo" style={{ width: '100px', marginBottom: '20px' }} />
+          <Image src="/logo.png" alt="Logo" style={{ width: '100px', marginBottom: '20px' }} />
           <h1 style={{ fontSize: '24px', marginTop: '8px' }}>Login</h1>
 
           <Formik
@@ -119,7 +122,8 @@ const Login: React.FC = () => {
           </div>
 
           <p style={{ marginTop: '20px', fontSize: '14px', color: 'gray', textAlign: 'center' }}>
-            Don't have an account? <a href="/register">Register</a>
+          Don&apos;t have an account? <Link href="/register">Register</Link>
+
           </p>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Image from 'next/image';
+
 
 interface NavbarProps {
   isLoggedIn: boolean;
@@ -24,7 +26,7 @@ const Navbar: React.FC<NavbarProps> = ({ isLoggedIn, setIsLoggedIn }) => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <div className="container">
         <Link href="/dashboard" className="navbar-brand">
-          <img src="/logo.png" alt="Logo" style={{ margin: '0', width: '80px', height: '80px' }} />
+          <Image src="/logo.png" alt="Logo" style={{ margin: '0', width: '80px', height: '80px' }} />
           BookBarter
         </Link>
         <button

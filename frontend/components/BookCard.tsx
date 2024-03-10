@@ -1,4 +1,6 @@
 import React from 'react';
+import Image from 'next/image';
+
 
 interface CardItem {
   img: string;
@@ -21,7 +23,7 @@ const BookCard: React.FC<BookCardProps<any>> = ({ item }) => {
   return (
     <div> {/* Center everything */}
       <div className="aspect-w-5 aspect-h-6 mb-4">
-        <img src={item.img} alt={item.title} style={{ height: '330px', width:'100%' }} />
+        <Image src={item.img} alt={item.title} style={{ height: '330px', width:'100%' }} />
       </div>
       <div>
         <h6 className="text-lg font-semibold mb-2">{truncateString(item.title, 25)}</h6>
