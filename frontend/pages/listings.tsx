@@ -60,7 +60,7 @@ const Listings = () => {
         const userData = response.data;
         setShowRequestPopup(true);
         setSelectedListingUser(userData);
-        setSelectedBookId(bookId); // Set selected bookId
+        setSelectedBookId(bookId.toString());
         console.log(bookId)
       })
       .catch(error => {
