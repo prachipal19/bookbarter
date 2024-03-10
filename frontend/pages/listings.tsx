@@ -72,7 +72,7 @@ const Listings = () => {
   const handleRequestClick = async () => {
     try {
       const token = localStorage.getItem('token');
-      if (!token) {
+      if (!token || !selectedListingUser) {
         return;
       }
   
@@ -85,7 +85,7 @@ const Listings = () => {
           'Authorization': `${token}`
         }
       });
-      console.log(selectedBookId)
+      console.log(selectedBookId);
       setShowRequestPopup(false);
     } catch (error) {
       console.error('Error sending exchange request:', error);
