@@ -43,7 +43,7 @@ const Listings = () => {
   const nextPage = () => setCurrentPage(currentPage + 1);
   const prevPage = () => setCurrentPage(currentPage - 1);
 
-  const fetchUserDetails = async (userId) => {
+  const fetchUserDetails = async (userId: string) => {
     try {
       const response = await axios.get(`${apiUrl}/api/user/${userId}`);
       setSelectedListingUser(response.data);
@@ -51,8 +51,9 @@ const Listings = () => {
       console.error('Error fetching user details:', error);
     }
   };
+  
 
-  const handleExchangeClick = (userId, bookId) => {
+  const handleExchangeClick = (userId:String, bookId:String) => {
     axios.get(`${apiUrl}/api/user/${userId}`)
       .then(response => {
         const userData = response.data;
@@ -92,7 +93,7 @@ const Listings = () => {
   
   
 
-  const handleAddToCartClick = (userId) => {
+  const handleAddToCartClick = (userId:String) => {
     fetchUserDetails(userId);
     setShowAddToCartPopup(true);
   };
