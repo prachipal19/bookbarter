@@ -15,7 +15,8 @@ const Listings = () => {
   const [showRequestPopup, setShowRequestPopup] = useState(false);
   const [selectedListingUser, setSelectedListingUser] = useState(null);
   const [showAddToCartPopup, setShowAddToCartPopup] = useState(false); // State for Add to Cart popup
-  const [selectedBookId, setSelectedBookId] = useState(null);
+  const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
+
 
   useEffect(() => {
     const fetchListings = async () => {
