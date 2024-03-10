@@ -5,9 +5,6 @@ import axios from 'axios';
 import { useRouter } from 'next/router';
 import { FaFacebookSquare, FaGoogle } from 'react-icons/fa'; // Import social icons
 import Layout from '../components/Layout';
-import Link from 'next/link';
-import Image from 'next/image';
-
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -32,7 +29,7 @@ const Register: React.FC = () => {
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', background: 'linear-gradient(319deg, #bbff99 0%, #ffec99 37%, #ff9999 100%)' }}>
 
       <div style={{ width: '400px', padding: '8px', background: 'white', borderRadius: '8px', boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-        <Image src="/logo.png" alt="Logo" style={{ width: '100px', marginBottom: '20px' }} />
+        <img src="/logo.png" alt="Logo" style={{ width: '100px', marginBottom: '20px' }} />
         <h1 style={{ fontSize: '24px', marginTop: '8px' }}>Register</h1>
 
         <Formik
@@ -103,7 +100,7 @@ const Register: React.FC = () => {
         </div>
 
         <p style={{ marginTop: '20px', fontSize: '14px', color: 'gray', textAlign: 'center' }}>
-          Already have an account? <Link href="/login" >Log in</Link>
+          Already have an account? <a href="/login" >Log in</a>
         </p>
       </div>
     </div>

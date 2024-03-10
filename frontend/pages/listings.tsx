@@ -8,15 +8,14 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const listingsPerPage = 18;
 
 const Listings = () => {
-  const [listings, setListings] = useState<any[]>([]);
+  const [listings, setListings] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterExchange, setFilterExchange] = useState(false);
   const [showRequestPopup, setShowRequestPopup] = useState(false);
   const [selectedListingUser, setSelectedListingUser] = useState(null);
   const [showAddToCartPopup, setShowAddToCartPopup] = useState(false); // State for Add to Cart popup
-  const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
-
+  const [selectedBookId, setSelectedBookId] = useState(null);
 
   useEffect(() => {
     const fetchListings = async () => {
@@ -44,7 +43,7 @@ const Listings = () => {
   const nextPage = () => setCurrentPage(currentPage + 1);
   const prevPage = () => setCurrentPage(currentPage - 1);
 
-  const fetchUserDetails = async (userId: string) => {
+  const fetchUserDetails = async (userId) => {
     try {
       const response = await axios.get(`${apiUrl}/api/user/${userId}`);
       setSelectedListingUser(response.data);
@@ -52,15 +51,14 @@ const Listings = () => {
       console.error('Error fetching user details:', error);
     }
   };
-  
 
-  const handleExchangeClick = (userId:String, bookId:String) => {
+  const handleExchangeClick = (userId, bookId) => {
     axios.get(`${apiUrl}/api/user/${userId}`)
       .then(response => {
         const userData = response.data;
         setShowRequestPopup(true);
         setSelectedListingUser(userData);
-        setSelectedBookId(bookId.toString());
+        setSelectedBookId(bookId); // Set selected bookId
         console.log(bookId)
       })
       .catch(error => {
@@ -72,7 +70,7 @@ const Listings = () => {
   const handleRequestClick = async () => {
     try {
       const token = localStorage.getItem('token');
-      if (!token || !selectedListingUser) {
+      if (!token) {
         return;
       }
   
@@ -85,7 +83,7 @@ const Listings = () => {
           'Authorization': `${token}`
         }
       });
-      console.log(selectedBookId);
+      console.log(selectedBookId)
       setShowRequestPopup(false);
     } catch (error) {
       console.error('Error sending exchange request:', error);
@@ -94,7 +92,7 @@ const Listings = () => {
   
   
 
-  const handleAddToCartClick = (userId:String) => {
+  const handleAddToCartClick = (userId) => {
     fetchUserDetails(userId);
     setShowAddToCartPopup(true);
   };

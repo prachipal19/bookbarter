@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Layout from '../components/Layout';
-import Image from 'next/image';
-
 
 interface ExchangeRequest {
   _id: string;
@@ -107,7 +105,7 @@ const ExchangeRequests: React.FC = () => {
                             onChange={(e) => handleBookSelectionChange(e, request._id, listing.title)} // Pass listing title
                           />
                           <label htmlFor={listing._id}>
-                            <Image src={listing.img} alt={listing.title} style={{ maxWidth: '100px' }} /> <br />
+                            <img src={listing.img} alt={listing.title} style={{ maxWidth: '100px' }} /> <br />
                             {listing.title}
                           </label>
                         </div>

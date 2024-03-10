@@ -5,8 +5,6 @@ import UpdateBook from '../components/UpdateBook';
 import AddBook from '../components/addbook';
 import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-
 
 interface Listing {
   ISBN: string;
@@ -80,7 +78,7 @@ const MyListings: React.FC = () => {
         {showAddBook && <AddBook onClose={() => setShowAddBook(false)} />} {/* Close the AddBook form */}
         {listings.map(listing => (
           <div key={listing.ISBN} style={{ marginBottom: '10px', padding: '10px', border: '1px solid #ccc', borderRadius: '8px', display: 'flex', alignItems: 'center' }}>
-            <Image src={listing.img} alt={listing.title} style={{ height: '80px', marginRight: '10px' }} />
+            <img src={listing.img} alt={listing.title} style={{ height: '80px', marginRight: '10px' }} />
             <div>
               <p>Title: {listing.title}</p>
               <p>Author: {listing.author}</p>

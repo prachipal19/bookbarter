@@ -1,13 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import Image from 'next/image';
-
 
 interface Exchange {
   img: string;
   title: string;
   author: string;
-  isExchange: boolean; 
 }
 
 interface AcceptedExchangeProps {
@@ -40,7 +37,7 @@ const AcceptedExchange: React.FC<AcceptedExchangeProps> = ({ apiUrl }) => {
       {exchangeListings.map((exchange, index) => (
         <div key={index}>
           {/* Display exchange details */}
-          <Image src={exchange.img} alt={exchange.title} />
+          <img src={exchange.img} alt={exchange.title} />
           <h3>{exchange.title}</h3>
           <p>{exchange.author}</p>
         </div>
