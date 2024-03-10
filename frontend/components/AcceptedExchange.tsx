@@ -7,6 +7,7 @@ interface Exchange {
   img: string;
   title: string;
   author: string;
+  isExchange: boolean; 
 }
 
 interface AcceptedExchangeProps {
