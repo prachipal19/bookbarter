@@ -1,0 +1,56 @@
+html, body { height: 100%; }
+body, .mat-typography {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Ensures footer is always aligned at the bottom */
+    height: 100%; /* Makes all cards the same height */
+  }
+  
+  .card-img-top {
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  
+  .card-body {
+    flex-grow: 1; /* Allows the body to expand to fill space */
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.pagination button[disabled] {
+    background-color: #ccc;
+    cursor: default;
+}
+
+
+
+.logo-image {
+  width: 60px;
+  height: 60px; 
+}

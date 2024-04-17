@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="row">
+    <!-- Left half for Incoming Requests -->
+    <div class="col-md-6">
+      <h2>Incoming Requests</h2>
+      <div *ngIf="incomingRequests.length > 0; else noIncomingRequests">
+        <div *ngFor="let request of incomingRequests.reverse()" class="card">
+          <div class="card-body">
+            <p class="card-text">Sender Email: {{ request.senderEmail }}</p>
+            <p class="card-text">Receiver Email: {{ request.receiverEmail }}</p>
+            <p class="card-text" style="font-weight: bold;">Status: {{ request.status }}</p>
+
+            <!-- List of books offered for exchange with radio buttons -->
+            <div class="card-text">
+              <p>Books offered for exchange:</p>
+              <div *ngFor="let listing of request.listingIds" class="book-container">
+                <label>
+                  <input type="radio" name="selectedBook" [value]="listing" (change)="handleBookSelectionChange(request._id, listing)">
+                  {{ listing.title }} (ISBN: {{ listing.ISBN }})
+                  <img src="{{ listing.img }}" alt="Book Image" width="100" height="150">
+                </label>
+              </div>
+            </div>
+
+            <!-- Options for accepting or rejecting -->
+            <div *ngIf="request.status === 'pending'">
+              <button class="btn btn-success m-3" (click)="handleAcceptReject('accepted')" [disabled]="!isBookSelected">Accept</button>
+              <button class="btn btn-danger m-3" (click)="handleAcceptReject('rejected')">Reject</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noIncomingRequests>
+        <p>No incoming requests</p>
+      </ng-template>
+    </div>
+
+    <!-- Right half for Outgoing Requests -->
+    <div class="col-md-6">
+      <h2>Outgoing Requests</h2>
+      <div *ngIf="outgoingRequests.length > 0; else noOutgoingRequests">
+        <div *ngFor="let request of outgoingRequests" class="card">
+          <div class="card-body">
+            <p class="card-text">Sender Email: {{ request.senderEmail }}</p>
+            <p class="card-text">Receiver Email: {{ request.receiverEmail }}</p>
+            <p class="card-text" style="font-weight: bold;">Status: {{ request.status }}</p>
+          </div>
+        </div>
+      </div>
+      <ng-template #noOutgoingRequests>
+        <p>No outgoing requests</p>
+      </ng-template>
+    </div>
+  </div>
+</div>

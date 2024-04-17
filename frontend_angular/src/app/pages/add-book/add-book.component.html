@@ -1,0 +1,71 @@
+<div class="parent">
+  <div class="container" [ngClass]="{'active': isUpdateMode}" id="container">
+    <!-- Sign In Form for Adding Books -->
+    <!-- Add Book Form -->
+<div class="form-container sign-in" *ngIf="!isUpdateMode">
+  <form [formGroup]="bookForm" (ngSubmit)="addOrUpdateBook()">
+    <h1>Add New Book</h1>
+    <span>Fill in the book details below:</span>
+    <input type="text" formControlName="title" placeholder="Title" class="input-field" 
+           [ngClass]="{'invalid-field': bookForm.get('title')!.invalid && (bookForm.get('title')!.touched || submitted)}">
+    <input type="text" formControlName="author" placeholder="Author" class="input-field" 
+           [ngClass]="{'invalid-field': bookForm.get('author')!.invalid && (bookForm.get('author')!.touched || submitted)}">
+    <input type="text" formControlName="ISBN" placeholder="ISBN" class="input-field" 
+           [ngClass]="{'invalid-field': bookForm.get('ISBN')!.invalid && (bookForm.get('ISBN')!.touched || submitted)}">
+    <input type="url" formControlName="img" placeholder="Image URL" class="input-field" 
+           [ngClass]="{'invalid-field': bookForm.get('img')!.invalid && (bookForm.get('img')!.touched || submitted)}">
+    <input type="number" formControlName="inventory" placeholder="Inventory" class="input-field" min="0" 
+           [ngClass]="{'invalid-field': bookForm.get('inventory')!.invalid && (bookForm.get('inventory')!.touched || submitted)}">
+    <input type="text" formControlName="category" placeholder="Category" class="input-field" 
+           [ngClass]="{'invalid-field': bookForm.get('category')!.invalid && (bookForm.get('category')!.touched || submitted)}">
+    <div>
+      <label>
+        <input type="checkbox" formControlName="isExchange"> Is Exchange?
+      </label>
+    </div>
+    <button type="submit" class="submit-btn">Add Book</button>
+  </form>
+</div>
+
+<!-- Update Book Form -->
+<div class="form-container sign-up" *ngIf="isUpdateMode">
+  <form [formGroup]="bookForm" (ngSubmit)="addOrUpdateBook()">
+    <h1>Update Book</h1>
+    <span>Modify the book details below:</span>
+    <input type="text" formControlName="title" placeholder="Title" class="input-field" 
+           [ngClass]="{'invalid-field': bookForm.get('title')!.invalid && (bookForm.get('title')!.touched || submitted)}">
+    <input type="text" formControlName="author" placeholder="Author" class="input-field" 
+           [ngClass]="{'invalid-field': bookForm.get('author')!.invalid && (bookForm.get('author')!.touched || submitted)}">
+    <input type="text" formControlName="ISBN" placeholder="ISBN" class="input-field" 
+           [ngClass]="{'invalid-field': bookForm.get('ISBN')!.invalid && (bookForm.get('ISBN')!.touched || submitted)}">
+    <input type="url" formControlName="img" placeholder="Image URL" class="input-field" 
+           [ngClass]="{'invalid-field': bookForm.get('img')!.invalid && (bookForm.get('img')!.touched || submitted)}">
+    <input type="number" formControlName="inventory" placeholder="Inventory" class="input-field" min="0" 
+           [ngClass]="{'invalid-field': bookForm.get('inventory')!.invalid && (bookForm.get('inventory')!.touched || submitted)}">
+    <input type="text" formControlName="category" placeholder="Category" class="input-field" 
+           [ngClass]="{'invalid-field': bookForm.get('category')!.invalid && (bookForm.get('category')!.touched || submitted)}">
+    <div>
+      <label>
+        <input type="checkbox" formControlName="isExchange"> Is Exchange?
+      </label>
+    </div>
+    <button type="submit" class="submit-btn">Update Book</button>
+  </form>
+</div>
+    <!-- Toggle Container for Mode Switching -->
+    <div class="toggle-container">
+      <div class="toggle">
+        <div *ngIf="isUpdateMode" class="toggle-panel toggle-left">
+          <h1>Adding a New Book?</h1>
+          <p>Switch to add book mode!</p>
+          <button type="button" class="hidden" (click)="toggleMode()">Add Book</button>
+        </div>
+        <div *ngIf="!isUpdateMode" class="toggle-panel toggle-right">
+          <h1>Need to Update a Book?</h1>
+          <p>Switch to update book mode!</p>
+          <button type="button" class="hidden" (click)="toggleMode()">Update Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

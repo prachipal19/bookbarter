@@ -1,0 +1,21 @@
+<section>
+    <div class="container">
+      <div>
+        <br><br>
+        <input type="text" [(ngModel)]="searchText" (ngModelChange)="filterBooks()" class="form-control mb-3" placeholder="Search for books...">
+      </div>
+      <div class="card-container">
+        <div *ngFor="let book of filteredBooks" class="card">
+          <img [src]="book.img" class="card-img-top" alt="{{book.title}}">
+          <div class="card-body">
+            <h5 class="card-title">{{book.title}}</h5>
+            <p class="card-text">{{book.author}}</p>
+          </div>
+          <div class="card-footer">
+            <a href="#" class="btn btn-primary">Buy</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

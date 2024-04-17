@@ -1,0 +1,37 @@
+<div class="container">
+    <button class="btn btn-success" style="margin-top: 20px;" (click)="toggleAddBookForm()">Add Book</button>
+    <br /><br />
+  
+    <div *ngIf="listings.length > 0; else noListings">
+      <div *ngFor="let listing of listings" style="margin-bottom: 10px; padding: 10px; border: 1px solid #ccc; border-radius: 8px; display: flex; align-items: center;">
+        <!-- Display listing details -->
+        <img [src]="listing.img" [alt]="listing.title" style="height: 80px; margin-right: 10px;" />
+        <div>
+          <p>Title: {{ listing.title }}</p>
+          <p>Author: {{ listing.author }}</p>
+        </div>
+        <div style="margin-left: auto;">
+          <button class="btn btn-primary" (click)="handleUpdateListing(listing)">Update</button>
+          <button class="btn btn-danger" (click)="handleDeleteListing(listing.ISBN)">Delete</button>
+        </div>
+      </div>
+    </div>
+    <ng-template #noListings>
+      <p>No listings found</p>
+    </ng-template>
+    <div *ngIf="showDeleteConfirmation" class="alert alert-success" role="alert">
+      Listing deleted successfully!
+    </div>
+    <div *ngIf="showUpdateConfirmation" class="alert alert-success" role="alert">
+      Listing updated successfully!
+    </div>
+  </div>
+
+  <div *ngIf="showAddBook">
+    <app-add-book 
+      *ngIf="!selectedBook; else updateBookForm"
+    ></app-add-book>
+    <ng-template #updateBookForm>
+      <app-add-book [bookObj]="selectedBook" [isUpdateMode]="true" *ngIf="selectedBook"></app-add-book>
+    </ng-template>
+  </div>

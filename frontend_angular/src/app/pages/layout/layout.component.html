@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-sm">
+  <div class="container-fluid">
+    <ul class="navbar-nav">
+    
+      <li class="nav-item">
+        <img class="nav-link1 logo-image" routerLink="/dashboard" routerLinkActive="active" src="../../../assets/logo.png" /> 
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/Shop" routerLinkActive="active">Shop</a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/listings" routerLinkActive="active">Listings</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/mylistings" routerLinkActive="active">My Listings</a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/exchangerequests" routerLinkActive="active">Exchange Requests</a>
+      </li>
+    </ul>
+    <form class="d-flex"> 
+      <span class="text-white">{{loggedUser?.email}}</span> 
+      <a class="nav-link" type="button" (click)="onLogoff()">LogOff</a>
+    </form>
+  </div>
+</nav>
+<router-outlet></router-outlet>

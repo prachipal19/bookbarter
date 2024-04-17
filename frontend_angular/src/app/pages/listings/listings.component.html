@@ -1,0 +1,46 @@
+<div class="container">
+  <input 
+      type="text" 
+      class="form-control mb-3"
+      style= "margin-top: 20px;"
+      placeholder="Search by book name" 
+      [(ngModel)]="searchTerm" 
+      (input)="filterListings()"
+  />
+  <br><br>
+  <label>
+      <input 
+          type="checkbox" 
+          [(ngModel)]="filterExchange" 
+          (change)="fetchListings(filterExchange)"
+      />
+      Show Exchange Listings
+  </label>
+  <br><br>
+  <div class="card-container">
+      <div class="card" *ngFor="let listing of listings">
+          <img class="card-img-top" [src]="listing.img" alt="{{ listing.title }}">
+          <div class="card-body">
+              <h2 class="card-title">{{ listing.title }}</h2>
+              <p class="card-text">Author: {{ listing.author }}</p>
+              <p class="card-text">Price: {{ listing.inventory }}</p>
+              <!-- Add more details here as needed -->
+              <button class="btn btn-primary" (click)="handleExchangeClick(listing.userId , listing._id)" *ngIf="listing.isExchange; else buyButton">Exchange</button>
+              <ng-template #buyButton>
+                  <button class="btn btn-primary">Buy</button>
+              </ng-template>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Request Exchange Dialog -->
+<div *ngIf="showRequestPopup" class="overlay">
+    <div class="dialog">
+      <h2>Request Exchange</h2>
+      <p>Confirm your request to exchange with {{ selectedListingUser?.name }} for the book: {{ selectedBookId }}.</p>
+      <button (click)="handleRequestClick()">Confirm</button>
+      <button (click)="showRequestPopup = false">Cancel</button>
+    </div>
+  </div>
+  
