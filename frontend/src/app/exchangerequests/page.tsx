@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout";
+import Image from "next/image";
 
 interface ExchangeRequest {
   _id: string;
@@ -194,7 +195,7 @@ const ExchangeRequests: React.FC = () => {
                             } // Pass listing title
                           />
                           <label htmlFor={listing._id}>
-                            <img
+                            <Image
                               src={listing.img}
                               alt={listing.title}
                               style={{ maxWidth: "100px" }}
