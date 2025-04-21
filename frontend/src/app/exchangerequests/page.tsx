@@ -52,11 +52,13 @@ const ExchangeRequests: React.FC = () => {
       }
 
       const data = await response.json();
-      const incomingSorted = data.incomingRequests.sort((a, b) => {
-        if (a.status === "pending") return -1;
-        if (b.status === "pending") return 1;
-        return 0;
-      });
+      const incomingSorted = data.incomingRequests.sort(
+        (a: ExchangeRequest, b: ExchangeRequest) => {
+          if (a.status === "pending") return -1;
+          if (b.status === "pending") return 1;
+          return 0;
+        }
+      );
       setIncomingRequests(incomingSorted);
       setOutgoingRequests(data.outgoingRequests);
     } catch (error) {
