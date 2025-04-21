@@ -1,10 +1,12 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, SetStateAction } from "react";
 import { FaShoppingCart, FaExchangeAlt } from "react-icons/fa";
 import Layout from "../components/Layout";
 import BookCard from "@/src/app/components/BookCard";
 
 interface Listing {
+  _id: SetStateAction<null>;
+  userId: string;
   ISBN: string;
   img: string;
   title: string;
@@ -13,7 +15,11 @@ interface Listing {
   category: string;
   isExchange: boolean;
 }
-
+interface User {
+  _id: string;
+  email: string;
+  // any other fields you expect
+}
 const listingsPerPage = 18;
 
 const Listings = () => {
@@ -22,7 +28,10 @@ const Listings = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [filterExchange, setFilterExchange] = useState(false);
   const [showRequestPopup, setShowRequestPopup] = useState(false);
-  const [selectedListingUser, setSelectedListingUser] = useState(null);
+  const [selectedListingUser, setSelectedListingUser] = useState<User | null>(
+    null
+  );
+
   const [showAddToCartPopup, setShowAddToCartPopup] = useState(false);
   const [selectedBookId, setSelectedBookId] = useState(null);
 
@@ -56,21 +65,23 @@ const Listings = () => {
   const nextPage = () => setCurrentPage(currentPage + 1);
   const prevPage = () => setCurrentPage(currentPage - 1);
 
-  const fetchUserDetails = async (userId) => {
+  const fetchUserDetails = async (userId: string) => {
     try {
-      const response = await fetch(`/api/user/${userId}`); // Use backticks for template string
+      const response = await fetch(`/api/user/${userId}`);
       const data = await response.json();
       setSelectedListingUser(data);
     } catch (error) {
       console.error("Error fetching user details:", error);
     }
   };
-
-  const handleExchangeClick = async (userId, bookId) => {
+  const handleExchangeClick = async (
+    userId: string,
+    bookId: React.SetStateAction<null>
+  ) => {
     try {
       await fetchUserDetails(userId);
       setShowRequestPopup(true);
-      setSelectedBookId(bookId); // Set selected bookId
+      setSelectedBookId(bookId);
       console.log(bookId);
     } catch (error) {
       console.error("Error handling exchange click:", error);
@@ -91,8 +102,8 @@ const Listings = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          receiverEmail: selectedListingUser.email,
-          receiverId: selectedListingUser._id,
+          receiverEmail: selectedListingUser?.email,
+          receiverId: selectedListingUser?._id,
           bookId: selectedBookId,
         }),
       });
@@ -104,7 +115,7 @@ const Listings = () => {
     }
   };
 
-  const handleAddToCartClick = (userId) => {
+  const handleAddToCartClick = (userId: string) => {
     fetchUserDetails(userId);
     setShowAddToCartPopup(true);
   };
