@@ -40,8 +40,7 @@ const Register: React.FC = () => {
           justifyContent: "center",
           alignItems: "center",
           minHeight: "100vh",
-          background:
-            "linear-gradient(319deg, #bbff99 0%, #ffec99 37%, #ff9999 100%)",
+          background: "gray",
         }}
       >
         <div
@@ -211,7 +210,7 @@ const Register: React.FC = () => {
             }}
           />
 
-          <div>
+          {/* <div>
             <button
               style={{
                 width: "100%",
@@ -244,7 +243,7 @@ const Register: React.FC = () => {
             >
               <FaGoogle style={{ marginRight: "4px" }} /> Sign up with Google
             </button>
-          </div>
+          </div> */}
 
           <p
             style={{

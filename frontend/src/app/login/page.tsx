@@ -71,7 +71,7 @@ const Login: React.FC = () => {
           alignItems: "center",
           minHeight: "100vh",
           background:
-            "linear-gradient(319deg, #bbff99 0%, #ffec99 37%, #ff9999 100%)",
+            "gray",
         }}
       >
         <div

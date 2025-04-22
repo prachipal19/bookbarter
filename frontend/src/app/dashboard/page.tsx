@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import BookCard from "@/src/app/components/BookCard";
 import { FaShoppingCart } from "react-icons/fa";
 import Layout from "../components/Layout";
+import { url } from "inspector";
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 const booksPerPage = 15;
@@ -44,10 +45,10 @@ const Dashboard = () => {
         <div>
           <div
             style={{
-              backgroundImage:
-                'url("https://img.freepik.com/premium-vector/set-hand-drawn-book-doodle-elements_253081-8.jpg")',
-              backgroundRepeat: "repeat",
-              backgroundSize: "550px",
+              backgroundImage: "url('/images/about.jpg')",
+              backgroundRepeat: "no-repeat", // Prevent tiling
+              backgroundSize: "cover", // Fit image nicely
+              backgroundPosition: "center", // Center the image
               padding: "16px",
               borderRadius: "4px",
               boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -55,10 +56,10 @@ const Dashboard = () => {
           >
             <h1
               style={{
-                backgroundColor: "#3182ce",
                 fontWeight: "bold",
                 marginBottom: "16px",
                 textAlign: "center",
+                fontSize: "60px",
               }}
             >
               Shop

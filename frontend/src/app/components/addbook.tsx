@@ -68,8 +68,14 @@ const AddBook: React.FC<{ onClose: () => void }> = ({ onClose }) => {
         justifyContent: "center",
         alignItems: "center",
         minHeight: "100vh",
-        background:
-          "linear-gradient(319deg, #bbff99 0%, #ffec99 37%, #ff9999 100%)",
+
+        backgroundImage: "url('/images/about.jpg')",
+        backgroundRepeat: "no-repeat", // Prevent tiling
+        backgroundSize: "cover", // Fit image nicely
+        backgroundPosition: "center", // Center the image
+        padding: "16px",
+        borderRadius: "4px",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
       }}
     >
       <div

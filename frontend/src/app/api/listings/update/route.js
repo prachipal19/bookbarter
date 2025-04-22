@@ -8,7 +8,7 @@ export const PUT = verifyToken(async (req, decoded) => {
   try {
     await connectDB();
 
-    const userId = decoded.userId;  // Access userId from the decoded token
+    const userId = decoded.userId;
     const { searchParams } = new URL(req.url);
     const isbn = searchParams.get('isbn');
 
@@ -16,10 +16,12 @@ export const PUT = verifyToken(async (req, decoded) => {
       return NextResponse.json({ message: 'ISBN is required' }, { status: 400 });
     }
 
+    const body = await req.json(); // 👈 This is the important part
+
     const updated = await Listing.findOneAndUpdate(
-      { userId, ISBN: isbn }, 
-      req.body,                 
-      { new: true }            
+      { userId, ISBN: isbn },
+      body,
+      { new: true }
     );
 
     if (!updated) {
