@@ -77,7 +77,7 @@ const ExchangeRequests: React.FC = () => {
 
       // Use fetch instead of axios for PUT request
       const response = await fetch(
-        `/api/exchange/update/${selectedRequestId}`,
+        `/api/exchange/update?exchangeRequestId=${selectedRequestId}`,
         {
           method: "PUT",
           headers: {
@@ -200,6 +200,8 @@ const ExchangeRequests: React.FC = () => {
                             <Image
                               src={listing.img}
                               alt={listing.title}
+                              width={500}
+                              height={400}
                               style={{ maxWidth: "100px" }}
                             />{" "}
                             <br />

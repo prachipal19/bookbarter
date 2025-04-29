@@ -7,12 +7,18 @@ export const PUT = verifyToken(async (req, decoded) => {
   try {
     await connectDB();
 
-    const { status } = req.body;
-    const { exchangeRequestId } = req.params;
+    // Extract from the URL, not req.params
+    const { searchParams } = new URL(req.url);
+    const exchangeRequestId = searchParams.get('exchangeRequestId');
+    const { status, bookId } = await req.json(); // req.body equivalent
 
-    // Update the status of the exchange request
+    if (!exchangeRequestId) {
+      return NextResponse.json({ message: 'Missing exchangeRequestId' }, { status: 400 });
+    }
+
+    // Update the exchange request
     const updatedExchangeRequest = await ExchangeRequest.findByIdAndUpdate(
-      exchangeRequestId, 
+      exchangeRequestId,
       { status },
       { new: true }
     );
@@ -26,9 +32,8 @@ export const PUT = verifyToken(async (req, decoded) => {
 
     return NextResponse.json({
       message: 'Exchange request status updated successfully',
-      updatedExchangeRequest
+      updatedExchangeRequest,
     });
-
   } catch (error) {
     console.error('Error updating exchange request status:', error);
     return NextResponse.json(
